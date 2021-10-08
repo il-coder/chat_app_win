@@ -1,0 +1,275 @@
+<!---
+	//OWNER	   : IL CODER
+	//AUTHOR   : PIYUSH GARG
+	//START	   : MAY-2020
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="google-site-verification" content="uF9ggpKLvzYgqiUaPe11TKochbv4fAXhpKJSY1bOqHY" />
+<!---
+	//OWNER	   : IL CODER
+	//AUTHOR   : PIYUSH GARG
+	//START	   : MAY-2020
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHAT-APP</title>
+<link rel="stylesheet" href="chat.css">
+<link rel="icon" href="ico.ico">
+</head>
+<body>
+<div id="overlay"><div id="overlay-text">YOU ARE OFFLINE</div></div>
+<h1 id="title">CHAT-APPLICATION</h1><br><br><br>
+<table id="channelselector">
+<tr>
+<th colspan="3">Select a channel below OR Enter a custom channel : </th>
+</tr>
+<tr>
+<td colspan="3"><form id="con" action="javascript:connect();">Enter your name :
+<input type="text" id="name" maxlength="15" placeholder="Your Name goes here" required autofocus></form>
+</td>
+</tr>
+<tr>
+<td><input type="button" class="stdchnl" onclick="javascript:connectstd(1);" value="Connect to channel 1"></input></td>
+<td><input type="button" class="stdchnl" onclick="javascript:connectstd(2);" value="Connect to channel 2"></input></td>
+<td><input type="button" class="stdchnl" onclick="javascript:connectstd(3);" value="Connect to channel 3"></input></td>
+</tr>
+<tr>
+<td colspan="2">Enter channel Number (between 100 & 10000):
+<input type="number" id="port" placeholder="9999" min="100" max="9999" form="con" required></td></form>
+<td>
+<input type="submit" value="Connect" id="connectbtn" form="con">&nbsp;<button type="button" id="cancel" disabled>Disconnect</button></td>
+</tr>
+<tr>
+<td colspan="1"><input type="button" id="save" onclick="javascript:saveHistory();" value="Save Chat History"></td>
+<td colspan="1"><input type="button" id="contd" onclick="javascript:proc_contd();" value="Continue to chat area"></td>
+<td colspan="1"><input type="button" id="load" onclick="javascript:uploadFileAccess();" value="Load Chat History"></td>
+</tr>
+<tr><input type="file" id="loadfile" accept=".igch" onchange="javascript:loadHistory(this);" hidden></tr>
+</table>
+
+
+<div id = "img-overlay">
+<img src="" id="userimage" class="imgshow" alt="User Text"></img>
+<iframe src="" id="userdoc" class="imgshow"></iframe>
+<div id="img-buttons">
+<input type="button" onclick="javascript:cancelimg();" value="Cancel" id="canimg">
+<input type="button" onclick="javascript:sendimg();" id="senimg" value="Send">
+</div>
+</div>
+
+<div id='options' style='display:none; position:absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); border: solid black 2px;'>
+	<a class='delete' href='javascript:do_nothing();' onclick='javascript:deletemsg(this.id)'>Delete</a>
+	<a href='javascript:do_nothing();' class='reply' onclick='javascript:reply(this.id)'>Reply</a>
+</div>
+
+<div id="chat">
+<div style="display: inline-block; width:80px;">
+<input type="button" id="goback" onclick="javascript:go_back();" value="&#8678;"></input></div>
+<div id='typing' style="visibility:hidden; text-align:center; padding-top:12px; padding-bottom:12px; font-size: 20px; margin-right: 10px; width: calc(100% - 100px); height: 50px; display: inline-block;"></div>
+<p id="demo"></p>
+<div id="connect">
+<form action="javascript:do_nothing();">
+<div id="clearfix1">
+<button type="button" id="emoji" onclick="javascript:emojl();">&#128578;</button>
+<input type="file" id="uploadimg" accept="image/*" onchange = "javascript:uploadimgs(this);"></input>
+<input type="file" id="uploaddoc" accept="*/*" onchange = "javascript:uploaddocs(this);"></input>
+<button type="button" id="uimg" onclick="document.getElementById('uploadimg').click();" disabled><img src="img.png" style="width: 35px; height:35px;" alt="Insert Image"/></button>
+<button type="button" id="udoc" onclick="document.getElementById('uploaddoc').click();" disabled><img src="img2.png" style="width: 35px; height:35px;" alt="Insert Image"/></button>
+<input type="text" placeholder="Type your message here" id="mf" onkeydown="javascript:typing();" disabled>
+<input type="submit" id="send" value=">"></input><br><br><br>
+<div id="emojlist">
+<div style="position:sticky; top:0px; background-color: #eee;"><a style="font-size: 25px;" onclick="javascript:showmoj('face');">&#128512;</a>&nbsp;&nbsp;<a style="font-size: 25px;" onclick="javascript:showmoj('food');">&#127848;</a></div>
+<div id="facemoj">
+<ul>
+<li><a onclick="javascript:insemoj(this);">&#128512;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128513;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128514;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128515;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128516;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128517;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128518;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128519;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128520;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128521;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128522;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128523;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128524;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128525;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128526;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128527;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128528;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128529;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128530;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128531;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128532;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128533;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128534;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128535;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128536;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128537;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128538;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128539;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128540;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128541;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128542;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128543;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128544;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128545;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128546;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128547;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128548;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128549;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128550;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128551;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128552;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128553;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128554;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128555;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128556;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128557;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128558;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128559;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128560;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128561;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128562;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128563;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128564;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128565;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128566;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128567;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128577;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128578;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128579;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#128580;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129296;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129297;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129298;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129299;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129300;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129301;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129312;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129313;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129314;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129315;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129316;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129317;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129319;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129320;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129321;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129322;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129323;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129324;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129325;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129326;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129327;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#129488;</a></li>
+</ul>
+</div>
+<div id="foodmoj" style="display:none;">
+<ul>
+<li><a onclick="javascript:insemoj(this);">&#127813;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127814;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127815;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127816;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127817;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127818;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127819;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127820;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127821;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127822;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127823;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127824;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127825;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127826;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127827;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127828;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127829;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127830;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127831;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127832;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127833;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127834;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127835;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127836;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127837;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127838;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127839;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127840;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127841;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127842;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127843;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127844;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127845;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127846;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127847;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127848;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127849;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127850;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127851;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127852;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127853;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127854;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127855;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127856;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127857;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127858;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127859;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127860;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127861;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127862;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127863;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127864;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127865;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127866;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127867;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127868;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127869;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127870;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127871;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127872;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127873;</a></li>
+<li><a onclick="javascript:insemoj(this);">&#127874;</a></li>
+</ul>
+</div>
+</div>
+
+<script>
+function showmoj(inp)
+{
+	var facemojvar = document.getElementById('facemoj');
+	var foodmojvar = document.getElementById('foodmoj');
+	if(inp=='face')
+	{
+		foodmojvar.style.display = 'none';
+		facemojvar.style.display = 'block';
+	}
+	else if(inp=='food')
+	{
+		foodmojvar.style.display = 'block';
+		facemojvar.style.display = 'none';
+	}
+}
+</script>
+
+<br>
+</div>
+<script src="start.js"></script>
+</form>
+<!---
+//OWNER	   : IL CODER
+//AUTHOR   : PIYUSH GARG
+//START	   : MAY-2020
+-->
+</div>
+</div>
+<p id="online" style="text-align:center;">You are </p>
+<p id='footers' style="margin-left:10px;"><b>Note:- </b><br>&rarr; Do not refresh the page once connected. It will disconnect you. However you can reconnect to same channel. But chat history will be lost.<br>&rarr; Do not enter any personal/sensitive information here. We will not be responsible for any data breach or loss.<br>&rarr; No Chat history is saved automatically but you can use save and load chat history feature.<br>&rarr; All features are not supported in Internet Explorer.
+<footer><p id='footers2' style="text-align:center;">Created and Managed by IL CODER<br>Powered By <a href="#">PIESOCKET.COM</a><br><a href="https://sites.google.com/view/ilcoder/feedback">Contact us here</a></p></footer></p>
+</body>
+</html>
+<!---
+//OWNER	   : IL CODER
+//AUTHOR   : PIYUSH GARG
+//START	   : MAY-2020
+-->
